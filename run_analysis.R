@@ -1,3 +1,6 @@
+library(dplyr)
+library(reshape)
+
 getData <- function(fileURL, filename) {
         if(!file.exists(filename)) {
                 download.file(fileURL, filename, method="curl")
@@ -81,4 +84,44 @@ buildDataSet <- function(setType) {
                                      activity_labels)
         measures <- readSensorData(file.path(dataDir, measureFilename))
         cbind(subjectId, activityId, setType, measures)
+}
+
+summarizeDataSet <- function(x) {
+        x %>% group_by(subject_id, activityId, setType) %>% summarise_each(funs(mean)) %>% as.data.frame()
+}
+
+narrowDataSet <- function(x, varType) {
+        colNames <- names(x)
+        idNames <- colNames[1:3]
+        measureNames <- colNames[grepl(varType, colNames)]
+        newNames <- gsub(varType,"_", measureNames)
+        x1 <- x[,c(idNames, measureNames)]
+        names(x1) <- c(idNames, newNames)
+        melt.data.frame(x1, id=idNames,
+                        variable_name="feature")
+#        names(retVal) <- c(idNames, "feature", varType)
+#        retVal
+}
+
+buildTidyData <- function() {
+        getMeanData <- function(x) {
+                summarizeDataSet(x) %>% narrowDataSet("_mean_")
+        }
+        getStdData <- function(x) {
+                narrowDataSet(x, "_std_")
+        }
+        mergeValues <- function(m, s) {
+                merge(m, s,
+                      by=c("subject_id", "activityId", "setType", "feature"),
+                      suffixes=c("_mean", "_std"),
+                      all=TRUE)
+        }
+        testData <- summarizeDataSet(buildDataSet("test"))
+        trainData <- summarizeDataSet(buildDataSet("train"))
+        rbind(
+                mergeValues(getMeanData(testData), getStdData(testData)) %>%
+                        arrange(subject_id, activityId, setType, feature),
+                mergeValues(getMeanData(trainData), getStdData(trainData)) %>%
+                        arrange(subject_id, activityId, setType, feature)
+        )
 }
