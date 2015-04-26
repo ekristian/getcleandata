@@ -175,7 +175,10 @@ buildUciHarTidyData <- function() {
         rbind(testData, trainData)
 }
 
-executeUciHarTidyDataProject <- function() {
-        stageUciHarData()
+executeUciHarTidyDataProject <- function(download=FALSE) {
+        if (download) {
+                print("Checking data dependency")
+                stageUciHarData()
+        }
         buildUciHarTidyData()
 }
