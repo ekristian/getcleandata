@@ -182,3 +182,5 @@ executeUciHarTidyDataProject <- function(download=FALSE) {
         }
         buildUciHarTidyData()
 }
+
+write.table(executeUciHarTidyDataProject(), file="tidydata.txt", row.names=FALSE)
