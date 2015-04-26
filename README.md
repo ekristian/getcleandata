@@ -32,8 +32,9 @@ features * activities * subjects
 ```
 
 # Functions
-## executeUciHarTidyDataProject()
-**parameters**: None  
+## executeUciHarTidyDataProject(download=FALSE)
+**parameters:**  
+download: TRUE = always download the zip file. FALSE, skip download.
 
 **Description:**  
 The **executeUciHarTidyDataProject** is the driver function that returns a tidy

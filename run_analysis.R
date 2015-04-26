@@ -43,7 +43,8 @@ unzipUciHarData <- function(fileName, force=FALSE) {
 # Convenience function to download and unzip the UCI Har Dataset in one step
 stageUciHarData <- function() {
         getCourseraData()
-        unzipUciHarData("Coursera_UCI_HAR_Dataset.zip")
+        unzip("Coursera_UCI_HAR_Dataset.zip", junkpaths=TRUE, exdir=".")
+        #unzipUciHarData("Coursera_UCI_HAR_Dataset.zip")
 }
 
 
@@ -64,7 +65,7 @@ getColumnMetaData <- function() {
                 gsub("[\\-,]","_", gsub("[\\(\\)]","", x, perl=TRUE), perl=TRUE)
         }
 
-        features <- read.csv("UCI HAR Dataset/features.txt", sep=" ",
+        features <- read.csv("features.txt", sep=" ",
                      header=FALSE, col.names=c("Field_number", "Field_Name"),
                      stringsAsFactors = FALSE)
         colNames <- sapply(features[,2], fixFieldNames, simplify=TRUE,
@@ -117,8 +118,10 @@ readActivityId <- function(filename, activity_lookup) {
 # 4) cbind them into a single data.frame with the test/train derived setType
 buildUciHarDataSet <- function(setType) {
         # Construct directory path and file names for input data
-        baseDir <- "UCI HAR Dataset"
-        dataDir <- file.path(baseDir, setType)
+        # baseDir <- "UCI HAR Dataset"
+        # dataDir <- file.path(baseDir, setType)
+        baseDir <- "."
+        dataDir <- "."
         measureFilename <- paste("X_", setType, ".txt", sep="")
         subjectIdFilename <- paste("subject_", setType, ".txt", sep="")
         activityIdFilename <- paste("y_", setType, ".txt", sep="")
