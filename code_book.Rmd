@@ -1,0 +1,216 @@
+---
+title: "Getting and Cleaning Data Course Project"
+author: "E. Kristian Heidenreich"
+date: "April 26, 2015"
+output: html_document
+---
+
+Description
+===
+The course project for the Coursera Getting and Cleaning Data course required 
+the construction of a tidy data set using _Human Activity Recognition Using
+Smartphones Dataset_ found here:
+http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+
+Code Book
+===
+
+## subject_id 
+#### numeric
+```
+Uniquely identifies the subject who performed the activity.  
+Thirty unique indivuals were monitored.  
+        1..30
+```
+
+## activityId 
+#### character(18)
+```
+Identifies the activity performed by the subject.
+There are six unique activities.
+        WALKING
+        WALKING_UPSTAIRS
+        WALKING_DOWNSTAIRS
+        SITTING
+        STANDING
+        LAYING
+```
+
+## setType 
+#### character(5)
+```
+Identifies the subject_id's group:
+        test
+        train
+```
+
+## feature
+#### character(25)
+Measurement taken from the smartphone:
+
+No|feature
+-|--
+1|tBodyAcc_mean_X
+2|tBodyAcc_mean_Y
+3|tBodyAcc_mean_Z
+4|tBodyAcc_std_X
+5|tBodyAcc_std_Y
+6|tBodyAcc_std_Z
+7|tGravityAcc_mean_X
+8|tGravityAcc_mean_Y
+9|tGravityAcc_mean_Z
+10|tGravityAcc_std_X
+11|tGravityAcc_std_Y
+12|tGravityAcc_std_Z
+13|tBodyAccJerk_mean_X
+14|tBodyAccJerk_mean_Y
+15|tBodyAccJerk_mean_Z
+16|tBodyAccJerk_std_X
+17|tBodyAccJerk_std_Y
+18|tBodyAccJerk_std_Z
+19|tBodyGyro_mean_X
+20|tBodyGyro_mean_Y
+21|tBodyGyro_mean_Z
+22|tBodyGyro_std_X
+23|tBodyGyro_std_Y
+24|tBodyGyro_std_Z
+25|tBodyGyroJerk_mean_X
+26|tBodyGyroJerk_mean_Y
+27|tBodyGyroJerk_mean_Z
+28|tBodyGyroJerk_std_X
+29|tBodyGyroJerk_std_Y
+30|tBodyGyroJerk_std_Z
+31|tBodyAccMag_mean
+32|tBodyAccMag_std
+33|tGravityAccMag_mean
+34|tGravityAccMag_std
+35|tBodyAccJerkMag_mean
+36|tBodyAccJerkMag_std
+37|tBodyGyroMag_mean
+38|tBodyGyroMag_std
+39|tBodyGyroJerkMag_mean
+40|tBodyGyroJerkMag_std
+41|fBodyAcc_mean_X
+42|fBodyAcc_mean_Y
+43|fBodyAcc_mean_Z
+44|fBodyAcc_std_X
+45|fBodyAcc_std_Y
+46|fBodyAcc_std_Z
+47|fBodyAccJerk_mean_X
+48|fBodyAccJerk_mean_Y
+49|fBodyAccJerk_mean_Z
+50|fBodyAccJerk_std_X
+51|fBodyAccJerk_std_Y
+52|fBodyAccJerk_std_Z
+53|fBodyGyro_mean_X
+54|fBodyGyro_mean_Y
+55|fBodyGyro_mean_Z
+56|fBodyGyro_std_X
+57|fBodyGyro_std_Y
+58|fBodyGyro_std_Z
+59|fBodyAccMag_mean
+60|fBodyAccMag_std
+61|fBodyBodyAccJerkMag_mean
+62|fBodyBodyAccJerkMag_std
+63|fBodyBodyGyroMag_mean
+64|fBodyBodyGyroMag_std
+65|fBodyBodyGyroJerkMag_mean
+66|fBodyBodyGyroJerkMag_std
+
+
+# value
+#### numeric
+The mean for each feature by subject_id.
+
+No |feature|minValue|maxValue
+-|--|--|-
+1|tBodyAcc_mean_X|0.22159824|0.301461020
+2|tBodyAcc_mean_Y|-0.04051395|-0.001308288
+3|tBodyAcc_mean_Z|-0.15251390|-0.075378469
+4|tBodyAcc_std_X|-0.99606864|0.626917071
+5|tBodyAcc_std_Y|-0.99024095|0.616937015
+6|tBodyAcc_std_Z|-0.98765866|0.609017879
+7|tGravityAcc_mean_X|-0.68004316|0.974508732
+8|tGravityAcc_mean_Y|-0.47989484|0.956593814
+9|tGravityAcc_mean_Z|-0.49508872|0.957873042
+10|tGravityAcc_std_X|-0.99676423|-0.829554948
+11|tGravityAcc_std_Y|-0.99424765|-0.643578361
+12|tGravityAcc_std_Z|-0.99095725|-0.610161166
+13|tBodyAccJerk_mean_X|0.04268810|0.130193044
+14|tBodyAccJerk_mean_Y|-0.03868721|0.056818586
+15|tBodyAccJerk_mean_Z|-0.06745839|0.038053359
+16|tBodyAccJerk_std_X|-0.99460454|0.544273037
+17|tBodyAccJerk_std_Y|-0.98951357|0.355306717
+18|tBodyAccJerk_std_Z|-0.99328831|0.031015708
+19|tBodyGyro_mean_X|-0.20577543|0.192704476
+20|tBodyGyro_mean_Y|-0.20420536|0.027470756
+21|tBodyGyro_mean_Z|-0.07245460|0.179102058
+22|tBodyGyro_std_X|-0.99427659|0.267657219
+23|tBodyGyro_std_Y|-0.99421047|0.476518714
+24|tBodyGyro_std_Z|-0.98553836|0.564875818
+25|tBodyGyroJerk_mean_X|-0.15721254|-0.022091627
+26|tBodyGyroJerk_mean_Y|-0.07680899|-0.013202277
+27|tBodyGyroJerk_mean_Z|-0.09249985|-0.006940664
+28|tBodyGyroJerk_std_X|-0.99654254|0.179148650
+29|tBodyGyroJerk_std_Y|-0.99708158|0.295945926
+30|tBodyGyroJerk_std_Z|-0.99538079|0.193206499
+31|tBodyAccMag_mean|-0.98649320|0.644604325
+32|tBodyAccMag_std|-0.98646454|0.428405923
+33|tGravityAccMag_mean|-0.98649320|0.644604325
+34|tGravityAccMag_std|-0.98646454|0.428405923
+35|tBodyAccJerkMag_mean|-0.99281472|0.434490401
+36|tBodyAccJerkMag_std|-0.99464692|0.450612066
+37|tBodyGyroMag_mean|-0.98074085|0.418004609
+38|tBodyGyroMag_std|-0.98137268|0.299975980
+39|tBodyGyroJerkMag_mean|-0.99732253|0.087581662
+40|tBodyGyroJerkMag_std|-0.99766607|0.250173204
+41|fBodyAcc_mean_X|-0.99524993|0.537012022
+42|fBodyAcc_mean_Y|-0.98903430|0.524187687
+43|fBodyAcc_mean_Z|-0.98947393|0.280735952
+44|fBodyAcc_std_X|-0.99660457|0.658506543
+45|fBodyAcc_std_Y|-0.99068040|0.560191344
+46|fBodyAcc_std_Z|-0.98722480|0.687124164
+47|fBodyAccJerk_mean_X|-0.99463080|0.474317256
+48|fBodyAccJerk_mean_Y|-0.98939882|0.276716853
+49|fBodyAccJerk_mean_Z|-0.99201845|0.157775692
+50|fBodyAccJerk_std_X|-0.99507376|0.476803887
+51|fBodyAccJerk_std_Y|-0.99046808|0.349771285
+52|fBodyAccJerk_std_Z|-0.99310776|-0.006236475
+53|fBodyGyro_mean_X|-0.99312261|0.474962448
+54|fBodyGyro_mean_Y|-0.99402549|0.328817010
+55|fBodyGyro_mean_Z|-0.98595779|0.492414380
+56|fBodyGyro_std_X|-0.99465219|0.196613287
+57|fBodyGyro_std_Y|-0.99435309|0.646233637
+58|fBodyGyro_std_Z|-0.98672527|0.522454216
+59|fBodyAccMag_mean|-0.98680065|0.586637551
+60|fBodyAccMag_std|-0.98764848|0.178684581
+61|fBodyBodyAccJerkMag_mean|-0.99399828|0.538404846
+62|fBodyBodyAccJerkMag_std|-0.99436667|0.316346415
+63|fBodyBodyGyroMag_mean|-0.98653524|0.203979765
+64|fBodyBodyGyroMag_std|-0.98146884|0.236659662
+65|fBodyBodyGyroJerkMag_mean|-0.99761739|0.146618569
+66|fBodyBodyGyroJerkMag_std|-0.99758523|0.287834616
+
+
+# Some basic counts for the data set
+There were a total of 30 unique subjects in this particular study.
+They were divided into two group: test and train
+
+Group | Frequency
+-|-
+test | 9
+train | 21
+**Total** | 30
+
+There are 66 features (measurements) obtained for 
+each of the 6 activity types for all 30 subjects.
+```{r}
+features <- 66
+activities <- 6
+subjects <- 30
+features * activities * subjects
+```
+
+```{r, include=FALSE}
+file.rename(from="code_book.md", to="CODE_BOOK.md")
+```
